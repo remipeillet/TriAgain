@@ -6,7 +6,7 @@
     </style>
 
     <style name="MyStyle" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/fond_accueil_triagain</item>
+        <item name="android:windowBackground">@drawable/fond_accueil_avec_panda</item>
     </style>
 
 </resources>
