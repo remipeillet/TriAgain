@@ -15,7 +15,7 @@
         android:layout_width="325dp"
         android:layout_height="325dp"
         app:srcCompat="@drawable/bouton_triagain"
-        android:id="@+id/imageButton"
+        android:id="@+id/startButton"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
