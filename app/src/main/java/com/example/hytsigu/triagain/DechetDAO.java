@@ -33,6 +33,7 @@ public class DechetDAO {
     public DechetDAO(Context context)
     {
         maBaseSQLite = MySQLite.getInstance(context);
+
     }
 
     public void open()

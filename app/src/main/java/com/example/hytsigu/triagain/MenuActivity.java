@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         this.startButton  = (ImageButton) findViewById(R.id.startButton);
         this.startButton.setOnClickListener(startListener);
+        DechetDAO dechetDAO = new DechetDAO(this);
 
     }
 
