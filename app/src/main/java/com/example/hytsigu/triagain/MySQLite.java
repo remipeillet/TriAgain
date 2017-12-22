@@ -17,21 +17,19 @@ import java.io.InputStreamReader;
 public class MySQLite extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tri_again.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static MySQLite sInstance;
     private Context context;
 
     public static synchronized MySQLite getInstance(Context context) {
-        System.out.println(">>>>>>>>>>getInstance");
         if (sInstance == null) { sInstance = new MySQLite(context); }
         return sInstance;
     }
 
     private MySQLite(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        System.out.println(">>>>>>>>>>constructeur");
         this.context = context;
-        this.onCreate(this.getWritableDatabase());
     }
 
     @Override
@@ -40,16 +38,17 @@ public class MySQLite extends SQLiteOpenHelper {
         // on exécute ici les requêtes de création des tables
         try {
             String requete = "";
+            System.out.println(">>>>>>>>>>>"+sqLiteDatabase);
             InputStream ips = context.getResources().getAssets().open("tri_again_database.sql");
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne;
             while ((ligne=br.readLine())!=null){
-                //System.out.println(ligne);
-                requete+=ligne;
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ligne);
+                sqLiteDatabase.execSQL(ligne);
             }
-            System.out.println(">>>>>>>>>>"+requete);
             br.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,7 +60,7 @@ public class MySQLite extends SQLiteOpenHelper {
         // Mise à jour de la base de données
         // méthode appelée sur incrémentation de DATABASE_VERSION
         // on peut faire ce qu'on veut ici, comme recréer la base :
-       // onCreate(sqLiteDatabase);
+       onCreate(sqLiteDatabase);
     }
 
 }
