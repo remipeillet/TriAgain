@@ -1,16 +1,17 @@
 package com.example.hytsigu.triagain;
 
 /**
- * Created by Utilisateur on 19/12/2017.
+ * Created by Charlotte on 19/12/2017.
  */
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MySQLite extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "db.sqlite";
+    private static final String DATABASE_NAME = "tri_again";
     private static final int DATABASE_VERSION = 1;
     private static MySQLite sInstance;
 
@@ -25,9 +26,22 @@ public class MySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        // Création de la base de données
-        // on exécute ici les requêtes de création des tables
-        sqLiteDatabase.execSQL(DechetDAO.CREATE_TABLE_DECHET); // création table "dechet"
+        try {
+            InputStream is = Context.getResources().getAssets().open("bdd_android_kayak.sql"); // ouvre le fichier qui contient les requêtes
+            Log.i("BDD", "Récupération fichier de création OK");
+
+            String[] statements = FileHelper.parseSqlFile(is); // tableau de string pour stocker les requêtes sql
+
+            for (String statement : statements) {
+                sqLiteDatabase.execSQL(statement);   //execution des requêtes
+            }
+
+            Log.i("BDD", "Création réussi");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Log.i("BDD", "Création ou connexion fichié échouée");
+        }
     }
 
     @Override
