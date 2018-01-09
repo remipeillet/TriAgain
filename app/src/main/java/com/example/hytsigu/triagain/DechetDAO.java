@@ -34,6 +34,7 @@ public class DechetDAO {
     public DechetDAO(Context context)
     {
         maBaseSQLite = MySQLite.getInstance(context);
+
     }
 
     public void open()
@@ -85,11 +86,25 @@ public class DechetDAO {
         // Retourne le dechet dont l'id est passé en paramètre
 
         Dechet a=new Dechet(0,"","","","");
+        /*ContentValues newTaskValues = new ContentValues();
 
+// Assign the values for each column.
+        newTaskValues.put(DechetDAO.ID_DECHET, 1);
+        newTaskValues.put(DechetDAO.NOM_FRANCAIS, "Barquette confiture");
+        newTaskValues.put(DechetDAO.NOM_ANGLAIS, "Jam tray");
+        newTaskValues.put(DechetDAO.NOM_IMAGE, "menager_barquette_plastique_confiture");
+        newTaskValues.put(DechetDAO.TYPE, "menager");
+
+        db.insert(DechetDAO.TABLE_NAME, null, newTaskValues);*/
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+ID_DECHET+"="+id, null);
+
         if (c.moveToFirst()) {
+            System.out.println(">>>>>>>>>>>>>>>"+c.getInt(c.getColumnIndex(ID_DECHET)));
             a.setId_dechet(c.getInt(c.getColumnIndex(ID_DECHET)));
             a.setNomFr(c.getString(c.getColumnIndex(NOM_FRANCAIS)));
+            a.setNomEn(c.getString(c.getColumnIndex(NOM_ANGLAIS)));
+            a.setNomImage(c.getString(c.getColumnIndex(NOM_IMAGE)));
+            a.setType(c.getString(c.getColumnIndex(TYPE)));
             c.close();
         }
 

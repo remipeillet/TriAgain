@@ -10,6 +10,8 @@ import android.view.View.OnClickListener;
 public class MenuActivity extends AppCompatActivity {
 
     ImageButton startButton;
+    DechetDAO datasource;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,9 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         this.startButton  = (ImageButton) findViewById(R.id.startButton);
         this.startButton.setOnClickListener(startListener);
+        datasource = new DechetDAO(this);
+        datasource.open();
+        System.out.println(">>>>>>>>>>>>>>>Activity : "+datasource.getDechet(0).getNomFr());
 
     }
 
@@ -27,4 +32,16 @@ public class MenuActivity extends AppCompatActivity {
             startActivityForResult(myIntent, 1);
         }
     };
+
+    @Override
+    protected void onResume() {
+        datasource.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        datasource.close();
+        super.onPause();
+    }
 }

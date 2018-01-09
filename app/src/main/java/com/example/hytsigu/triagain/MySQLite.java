@@ -1,19 +1,25 @@
 package com.example.hytsigu.triagain;
 
 /**
- * Created by Charlotte on 19/12/2017.
+ * Created by Utilisateur on 19/12/2017.
  */
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MySQLite extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "tri_again";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "tri_again.db";
+    private static final int DATABASE_VERSION = 3;
     private static MySQLite sInstance;
+    private Context context;
 
     public static synchronized MySQLite getInstance(Context context) {
         if (sInstance == null) { sInstance = new MySQLite(context); }
@@ -21,27 +27,32 @@ public class MySQLite extends SQLiteOpenHelper {
     }
 
     private MySQLite(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        // Création de la base de données
+        // on exécute ici les requêtes de création des tables
         try {
-            InputStream is = Context.getResources().getAssets().open("bdd_android_kayak.sql"); // ouvre le fichier qui contient les requêtes
-            Log.i("BDD", "Récupération fichier de création OK");
-
-            String[] statements = FileHelper.parseSqlFile(is); // tableau de string pour stocker les requêtes sql
-
-            for (String statement : statements) {
-                sqLiteDatabase.execSQL(statement);   //execution des requêtes
+            String requete = "";
+            System.out.println(">>>>>>>>>>>"+sqLiteDatabase);
+            InputStream ips = context.getResources().getAssets().open("tri_again_database.sql");
+            InputStreamReader ipsr=new InputStreamReader(ips);
+            BufferedReader br=new BufferedReader(ipsr);
+            String ligne;
+            while ((ligne=br.readLine())!=null){
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ligne);
+                sqLiteDatabase.execSQL(ligne);
             }
+            br.close();
 
-            Log.i("BDD", "Création réussi");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Log.i("BDD", "Création ou connexion fichié échouée");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        //sqLiteDatabase.execSQL(DechetDAO.CREATE_TABLE_DECHET);// création table "dechet"
     }
 
     @Override
@@ -49,7 +60,7 @@ public class MySQLite extends SQLiteOpenHelper {
         // Mise à jour de la base de données
         // méthode appelée sur incrémentation de DATABASE_VERSION
         // on peut faire ce qu'on veut ici, comme recréer la base :
-       // onCreate(sqLiteDatabase);
+       onCreate(sqLiteDatabase);
     }
 
 }
