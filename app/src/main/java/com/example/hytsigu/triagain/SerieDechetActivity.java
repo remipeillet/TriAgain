@@ -1,23 +1,28 @@
 package com.example.hytsigu.triagain;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SerieDechetActivity extends AppCompatActivity {
+public class SerieDechetActivity extends AbstractActivity {
 
     ImageButton poubelleJaune;
     ImageButton poubelleMenager;
 
     ImageView dechet;
 
+    TextView consigne;
     TextView nomFrancaisDechet;
     TextView nomAnglaisDechet;
 
@@ -26,7 +31,7 @@ public class SerieDechetActivity extends AppCompatActivity {
     int nbQuestions;
     int questionCourante;
 
-    List<Dechet> serieDechet;
+    ArrayList<Dechet> serieDechet;
     boolean[] resultatsQuestions;
 
     @Override
@@ -37,12 +42,14 @@ public class SerieDechetActivity extends AppCompatActivity {
         //Obtention de la liste de dechets
         this.datasource = new DechetDAO(this);
         this.datasource.open();
-        this.serieDechet = this.datasource.getListDechets(3);
+        //On recupère une liste de 3 dechets
+        this.serieDechet = new ArrayList<>(this.datasource.getListDechets(3));
         this.datasource.close();
 
         //Récupération des éléments de la vue
         this.poubelleJaune = (ImageButton) findViewById(R.id.poubelleJauneButton);
         this.poubelleMenager = (ImageButton) findViewById(R.id.poubelleMenagerButton);
+        this.consigne = (TextView) findViewById(R.id.consigneView);
         this.dechet = (ImageView) findViewById(R.id.dechetView);
         this.nomFrancaisDechet = (TextView) findViewById(R.id.nomFrancaisView);
         this.nomAnglaisDechet = (TextView) findViewById(R.id.nomAnglaisView);
@@ -77,7 +84,7 @@ public class SerieDechetActivity extends AppCompatActivity {
                 resultatsQuestions[questionCourante]=false;
             }
 
-            if(questionCourante < nbQuestions){
+            if(questionCourante < nbQuestions-1){
                 questionCourante++;
                 int resID = getResources().getIdentifier(serieDechet.get(questionCourante).getNomImage(),"drawable",getPackageName());
                 dechet.setImageResource(resID);
@@ -86,7 +93,7 @@ public class SerieDechetActivity extends AppCompatActivity {
                 nomFrancaisDechet.setText(serieDechet.get(questionCourante).getNomFr());
                 nomAnglaisDechet.setText(serieDechet.get(questionCourante).getNomEn());
             }else{
-                Toast.makeText(v.getContext(),"fini",Toast.LENGTH_LONG).show();
+                finSerie();
             }
 
 
@@ -113,9 +120,20 @@ public class SerieDechetActivity extends AppCompatActivity {
                 nomFrancaisDechet.setText(serieDechet.get(questionCourante).getNomFr());
                 nomAnglaisDechet.setText(serieDechet.get(questionCourante).getNomEn());
             }else{
-                Toast.makeText(v.getContext(),"fini",Toast.LENGTH_LONG).show();
+                finSerie();
             }
         }
     };
+
+    public void finSerie(){
+        Intent myIntent=new Intent(getApplicationContext(),ResultatActivity.class);
+        myIntent.putExtra("resultats",resultatsQuestions);
+        myIntent.putParcelableArrayListExtra("dechets", (ArrayList<Dechet>) serieDechet);
+        startActivityForResult(myIntent,1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finish();
+    }
 
 }

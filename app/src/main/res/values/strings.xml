@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">TriAgain</string>
     <string name="consigne">Choisis la bonne poubelle</string>
+    <string name="title_activity_resultat">ResultatActivity</string>
+    <string name="fontCabinSketch">CabinSketch-Regular.ttf</string>
 </resources>

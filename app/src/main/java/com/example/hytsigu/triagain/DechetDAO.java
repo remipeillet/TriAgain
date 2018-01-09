@@ -7,6 +7,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class DechetDAO {
 
 
@@ -85,20 +90,10 @@ public class DechetDAO {
         // Retourne l'animal dont l'id est passé en paramètre
 
         Dechet a=new Dechet(0,"","","","");
-        /*ContentValues newTaskValues = new ContentValues();
 
-// Assign the values for each column.
-        newTaskValues.put(DechetDAO.ID_DECHET, 1);
-        newTaskValues.put(DechetDAO.NOM_FRANCAIS, "Barquette confiture");
-        newTaskValues.put(DechetDAO.NOM_ANGLAIS, "Jam tray");
-        newTaskValues.put(DechetDAO.NOM_IMAGE, "menager_barquette_plastique_confiture");
-        newTaskValues.put(DechetDAO.TYPE, "menager");
-
-        db.insert(DechetDAO.TABLE_NAME, null, newTaskValues);*/
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+ID_DECHET+"="+id, null);
 
         if (c.moveToFirst()) {
-            System.out.println(">>>>>>>>>>>>>>>"+c.getInt(c.getColumnIndex(ID_DECHET)));
             a.setId_dechet(c.getInt(c.getColumnIndex(ID_DECHET)));
             a.setNomFr(c.getString(c.getColumnIndex(NOM_FRANCAIS)));
             a.setNomEn(c.getString(c.getColumnIndex(NOM_ANGLAIS)));
@@ -110,9 +105,35 @@ public class DechetDAO {
         return a;
     }
 
-    public Cursor getDechets() {
+    public ArrayList<Dechet> getDechets() {
+
+        ArrayList<Dechet> dechets = new ArrayList<>();
         // sélection de tous les enregistrements de la table
-        return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        c.moveToFirst();
+        while(!c.isLast()){
+            Dechet dechet = new Dechet(c.getInt(c.getColumnIndex(ID_DECHET)),c.getString(c.getColumnIndex(NOM_FRANCAIS)),c.getString(c.getColumnIndex(NOM_ANGLAIS)),c.getString(c.getColumnIndex(NOM_IMAGE)),c.getString(c.getColumnIndex(TYPE)));
+            dechets.add(dechet);
+            c.moveToNext();
+        }
+        c.close();
+        Collections.shuffle(dechets);
+        return dechets;
+    }
+
+    public List<Dechet> getListDechets(int taille) {
+
+        ArrayList<Dechet> dechets = new ArrayList<>();
+        // sélection de tous les enregistrements de la table
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        while(!c.isLast()){
+            c.moveToNext();
+            Dechet dechet = new Dechet(c.getInt(c.getColumnIndex(ID_DECHET)),c.getString(c.getColumnIndex(NOM_FRANCAIS)),c.getString(c.getColumnIndex(NOM_ANGLAIS)),c.getString(c.getColumnIndex(NOM_IMAGE)),c.getString(c.getColumnIndex(TYPE)));
+            dechets.add(dechet);
+        }
+        c.close();
+        Collections.shuffle(dechets);
+        return dechets.subList(0,taille);
     }
 
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AbstractActivity {
 
     ImageButton startButton;
     DechetDAO datasource;
@@ -21,7 +21,6 @@ public class MenuActivity extends AppCompatActivity {
         this.startButton.setOnClickListener(startListener);
         datasource = new DechetDAO(this);
         datasource.open();
-        System.out.println(">>>>>>>>>>>>>>>Activity : "+datasource.getDechet(0).getNomFr());
 
     }
 

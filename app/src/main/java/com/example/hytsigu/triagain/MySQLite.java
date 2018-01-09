@@ -38,13 +38,11 @@ public class MySQLite extends SQLiteOpenHelper {
         // on exécute ici les requêtes de création des tables
         try {
             String requete = "";
-            System.out.println(">>>>>>>>>>>"+sqLiteDatabase);
             InputStream ips = context.getResources().getAssets().open("tri_again_database.sql");
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne;
             while ((ligne=br.readLine())!=null){
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ligne);
                 sqLiteDatabase.execSQL(ligne);
             }
             br.close();
