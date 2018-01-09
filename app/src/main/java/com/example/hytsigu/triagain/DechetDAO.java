@@ -132,6 +132,7 @@ public class DechetDAO {
             Dechet dechet = new Dechet(c.getInt(c.getColumnIndex(ID_DECHET)),c.getString(c.getColumnIndex(NOM_FRANCAIS)),c.getString(c.getColumnIndex(NOM_ANGLAIS)),c.getString(c.getColumnIndex(NOM_IMAGE)),c.getString(c.getColumnIndex(TYPE)));
             dechets.add(dechet);
         }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+dechets.size());
         c.close();
         Collections.shuffle(dechets);
         return dechets.subList(0,taille);

@@ -1,12 +1,14 @@
 package com.example.hytsigu.triagain;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import java.util.List;
 
@@ -62,11 +64,11 @@ public class ResultatAdapter extends BaseAdapter {
         *Mets le fond de l'item en rouge si la tâche est "à faire"
          */
         this.resultatView = (TextView) view.findViewById(R.id.textView);
-        if(resultatsQuestions[position]==false){
-            this.resultatView.setTextColor(0x01060017);
+        if(!resultatsQuestions[position]){
+            this.resultatView.setTextColor(ContextCompat.getColor(context,R.color.holo_red_dark));
         }
-        else if(resultatsQuestions[position]==true){
-            this.resultatView.setTextColor(0x01060015);
+        else if(resultatsQuestions[position]){
+            this.resultatView.setTextColor(ContextCompat.getColor(context,R.color.holo_green_dark));
         }
         this.resultatView.setText(dechetList.get(position).getNomFr());
 

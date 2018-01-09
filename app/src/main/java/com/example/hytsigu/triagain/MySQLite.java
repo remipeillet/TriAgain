@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 public class MySQLite extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tri_again.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static MySQLite sInstance;
     private Context context;
 
@@ -42,8 +42,11 @@ public class MySQLite extends SQLiteOpenHelper {
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne;
+            int i=0;
             while ((ligne=br.readLine())!=null){
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>ligne "+i+" : "+ligne);
                 sqLiteDatabase.execSQL(ligne);
+                i++;
             }
             br.close();
 

@@ -43,7 +43,7 @@ public class SerieDechetActivity extends AbstractActivity {
         this.datasource = new DechetDAO(this);
         this.datasource.open();
         //On recupère une liste de 3 dechets
-        this.serieDechet = new ArrayList<>(this.datasource.getListDechets(3));
+        this.serieDechet = new ArrayList<>(this.datasource.getListDechets(5));
         this.datasource.close();
 
         //Récupération des éléments de la vue

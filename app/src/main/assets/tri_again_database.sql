@@ -13,5 +13,3 @@ INSERT INTO dechets VALUES(9,"Conserve","canned food","recyclable_conserve","rec
 INSERT INTO dechets VALUES(10,"Sirop","syrup","recyclable_sirop","recyclable");
 INSERT INTO dechets VALUES(11,"Cahier","notebook","recyclable_cahier","recyclable");
 INSERT INTO dechets VALUES(12,"Shampoing","shampoo","recyclable_shampoing","recyclable");
-
-
