@@ -10,5 +10,8 @@ INSERT INTO dechets VALUES(6,"Boite de céréales","Cereal box","recyclable_boit
 INSERT INTO dechets VALUES(7,"Bouteille d'eau","bottle of water","recyclable_bouteilleeau","recyclable");
 INSERT INTO dechets VALUES(8,"Canette de Soda","can of soda","recyclable_canettesoda","recyclable");
 INSERT INTO dechets VALUES(9,"Conserve","canned food","recyclable_conserve","recyclable");
+INSERT INTO dechets VALUES(10,"Sirop","syrup","recyclable_sirop","recyclable");
+INSERT INTO dechets VALUES(11,"Cahier","notebook","recyclable_cahier","recyclable");
+INSERT INTO dechets VALUES(12,"Shampoing","shampoo","recyclable_shampoing","recyclable");
 
 
