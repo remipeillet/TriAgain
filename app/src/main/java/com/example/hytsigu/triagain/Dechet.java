@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 /**
- * Created by Utilisateur on 19/12/2017.
+ * Created by Charlotte on 19/12/2017.
  */
 
 public class Dechet implements Parcelable {

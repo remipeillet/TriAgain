@@ -1,7 +1,7 @@
 package com.example.hytsigu.triagain;
 
 /**
- * Created by Utilisateur on 19/12/2017.
+ * Created by Charlotte on 19/12/2017.
  */
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,6 +21,7 @@ public class DechetDAO {
     private static final String NOM_ANGLAIS="nomEN";
     private static final String NOM_IMAGE="nomImage";
     private static final String TYPE="type";
+
     public static final String CREATE_TABLE_DECHET = "CREATE TABLE "+TABLE_NAME+
             " (" +
             " "+ID_DECHET+" INTEGER primary key," +
@@ -87,7 +88,7 @@ public class DechetDAO {
     }
 
     public Dechet getDechet(int id) {
-        // Retourne l'animal dont l'id est passé en paramètre
+        // Retourne le dechet dont l'id est passé en paramètre
 
         Dechet a=new Dechet(0,"","","","");
 
