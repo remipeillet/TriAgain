@@ -77,10 +77,8 @@ public class SerieDechetActivity extends AbstractActivity {
         @Override
         public void onClick(View v) {
             if(serieDechet.get(questionCourante).getType().equals("recyclable")){
-                Toast.makeText(v.getContext(),"true",Toast.LENGTH_LONG).show();
                 resultatsQuestions[questionCourante]=true;
             }else{
-                Toast.makeText(v.getContext(),"false",Toast.LENGTH_LONG).show();
                 resultatsQuestions[questionCourante]=false;
             }
 
@@ -104,10 +102,8 @@ public class SerieDechetActivity extends AbstractActivity {
         @Override
         public void onClick(View v) {
             if(serieDechet.get(questionCourante).getType().equals("menager")){
-                Toast.makeText(v.getContext(),"true",Toast.LENGTH_LONG).show();
                 resultatsQuestions[questionCourante]=true;
             }else{
-                Toast.makeText(v.getContext(),"false",Toast.LENGTH_LONG).show();
                 resultatsQuestions[questionCourante]=false;
             }
 
