@@ -44,7 +44,6 @@ public class MySQLite extends SQLiteOpenHelper {
             String ligne;
             int i=0;
             while ((ligne=br.readLine())!=null){
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>ligne "+i+" : "+ligne);
                 sqLiteDatabase.execSQL(ligne);
                 i++;
             }

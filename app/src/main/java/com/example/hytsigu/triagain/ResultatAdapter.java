@@ -60,9 +60,7 @@ public class ResultatAdapter extends BaseAdapter {
             view =convertView;
         }
         LinearLayout layoutItem = (LinearLayout)view.findViewById(R.id.resultat_list_item);
-        /*
-        *Mets le fond de l'item en rouge si la tâche est "à faire"
-         */
+
         this.resultatView = (TextView) view.findViewById(R.id.textView);
         if(!resultatsQuestions[position]){
             this.resultatView.setTextColor(ContextCompat.getColor(context,R.color.holo_red_dark));
