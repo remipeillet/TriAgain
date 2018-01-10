@@ -13,3 +13,7 @@ INSERT INTO dechets VALUES(9,"Conserve","canned food","recyclable_conserve","rec
 INSERT INTO dechets VALUES(10,"Sirop","syrup","recyclable_sirop","recyclable");
 INSERT INTO dechets VALUES(11,"Cahier","notebook","recyclable_cahier","recyclable");
 INSERT INTO dechets VALUES(12,"Shampoing","shampoo","recyclable_shampoing","recyclable");
+INSERT INTO dechets VALUES(13,"Pochette Cadeau","gift bag","recyclable_pochettecadeau","recyclable");
+INSERT INTO dechets VALUES(14,"Ketchup","Ketchup","recyclable_ketchup","recyclable");
+INSERT INTO dechets VALUES(15,"Briquette de Jus d'orange","briquette of orange juice","recyclable_briquettejusorange","recyclable");
+INSERT INTO dechets VALUES(16,"Tube de dentifrice","tube of toothpaste","menager_dentifrice","menager");
