@@ -21,7 +21,8 @@ public class ResultatAdapter extends BaseAdapter {
     private boolean[] resultatsQuestions;
     private Context context;
     private LayoutInflater inflater;
-    private TextView resultatView;
+    private TextView nomView;
+    private TextView poubelleView;
 
     public ResultatAdapter(Context context, List<Dechet> dechetList, boolean[] resultatsQuestions){
         this.context=context;
@@ -61,14 +62,24 @@ public class ResultatAdapter extends BaseAdapter {
         }
         LinearLayout layoutItem = (LinearLayout)view.findViewById(R.id.resultat_list_item);
 
-        this.resultatView = (TextView) view.findViewById(R.id.textView);
+        this.nomView = (TextView) view.findViewById(R.id.nomView);
+        this.poubelleView = (TextView) view.findViewById(R.id.poubelleView);
+        String poubelle = "";
+
+        if(dechetList.get(position).getType().equals("recyclable")){
+            this.poubelleView.setText(context.getResources().getString(R.string.poubelleJaune));
+        }else{
+            this.poubelleView.setText(context.getResources().getString(R.string.poubelleMenagere));
+        }
         if(!resultatsQuestions[position]){
-            this.resultatView.setTextColor(ContextCompat.getColor(context,R.color.holo_red_dark));
+            this.nomView.setTextColor(ContextCompat.getColor(context,R.color.holo_red_dark));
+            this.poubelleView.setTextColor(ContextCompat.getColor(context,R.color.holo_red_dark));
         }
         else if(resultatsQuestions[position]){
-            this.resultatView.setTextColor(ContextCompat.getColor(context,R.color.holo_green_dark));
+            this.nomView.setTextColor(ContextCompat.getColor(context,R.color.holo_green_dark));
+            this.poubelleView.setTextColor(ContextCompat.getColor(context,R.color.holo_green_dark));
         }
-        this.resultatView.setText(dechetList.get(position).getNomFr());
+        this.nomView.setText(dechetList.get(position).getNomFr());
 
 
         return view;

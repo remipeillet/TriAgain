@@ -53,4 +53,8 @@ public class ChoixActivity extends AppCompatActivity {
         }
     };
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finish();
+    }
+
 }

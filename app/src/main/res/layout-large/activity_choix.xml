@@ -10,48 +10,44 @@
         android:id="@+id/button5Questions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
         android:background="@android:color/transparent"
-        android:text="5 Questions"
+        android:text="@string/button5Questions"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="36sp"
         app:font="@string/fontCabinSketch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="150dp"
+        tools:layout_editor_absoluteX="188dp" />
 
     <com.example.hytsigu.triagain.CustomButtonView
         android:id="@+id/button10Questions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
-        android:text="10 Questions"
+        android:text="@string/button10Questions"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="36sp"
         app:font="@string/fontCabinSketch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5Questions" />
+        app:layout_constraintTop_toBottomOf="@+id/button5Questions"
+        tools:layout_editor_absoluteX="178dp" />
 
     <com.example.hytsigu.triagain.CustomButtonView
         android:id="@+id/button15Questions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
-        android:text="15 Questions"
+        android:text="@string/button15Questions"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="36sp"
         app:font="@string/fontCabinSketch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10Questions" />
+        app:layout_constraintTop_toBottomOf="@+id/button10Questions"
+        tools:layout_editor_absoluteX="178dp" />
 
 </android.support.constraint.ConstraintLayout>
