@@ -47,8 +47,9 @@ public class SerieDechetActivity extends AbstractActivity {
             //Obtention de la liste de dechets
             this.datasource = new DechetDAO(this);
             this.datasource.open();
-            //On recupère une liste de 3 dechets
-            this.serieDechet = new ArrayList<>(this.datasource.getListDechets(5));
+            //On recupère le nb de questions selon le choix de l'user
+            Bundle bundle = getIntent().getExtras();
+            this.serieDechet = new ArrayList<>(this.datasource.getListDechets(bundle.getInt("nbQuestions")));
             this.datasource.close();
 
             //Initialisation du déroulement de la serie

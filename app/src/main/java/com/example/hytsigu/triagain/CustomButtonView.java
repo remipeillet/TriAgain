@@ -5,15 +5,13 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * Created by Hytsigu on 08/01/2018.
- */
 
-public class CustomTextView extends TextView {
+public class CustomButtonView extends Button {
 
-    public CustomTextView(Context context, AttributeSet attrs) {
+    public CustomButtonView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         //Typeface.createFromAsset doesn't work in the layout editor. Skipping...

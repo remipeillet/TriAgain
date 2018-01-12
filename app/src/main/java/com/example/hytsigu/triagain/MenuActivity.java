@@ -27,7 +27,7 @@ public class MenuActivity extends AbstractActivity {
     private OnClickListener startListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent myIntent = new Intent(getApplicationContext(), SerieDechetActivity.class);
+            Intent myIntent = new Intent(getApplicationContext(), ChoixActivity.class);
             startActivityForResult(myIntent, 1);
         }
     };

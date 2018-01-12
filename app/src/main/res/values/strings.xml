@@ -3,4 +3,7 @@
     <string name="consigne">Choisis la bonne poubelle</string>
     <string name="title_activity_resultat">ResultatActivity</string>
     <string name="fontCabinSketch">CabinSketch-Regular.ttf</string>
+    <string name="button5Questions">5 Questions </string>
+    <string name="button10Questions">10 Questions </string>
+    <string name="button15Questions">15 Questions </string>
 </resources>
