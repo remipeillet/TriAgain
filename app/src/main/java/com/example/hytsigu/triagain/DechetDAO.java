@@ -134,6 +134,9 @@ public class DechetDAO {
         }
         c.close();
         Collections.shuffle(dechets);
+        if(taille>dechets.size()){
+            taille = dechets.size();
+        }
         return dechets.subList(0,taille);
     }
 

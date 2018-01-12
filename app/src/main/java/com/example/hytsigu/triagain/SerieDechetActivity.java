@@ -28,10 +28,14 @@ public class SerieDechetActivity extends AbstractActivity {
 
     DechetDAO datasource;
 
+    final String NBQUESTIONLIB = "nbQuestions";
     int nbQuestions;
+    final String QUESTIONCOURANTELIB = "questionsCourante";
     int questionCourante;
 
+    final String SERIEDECHETSLIB = "serieDechets";
     ArrayList<Dechet> serieDechet;
+    final String RESULTATQUESTIONSLIB = "resultatsQuestions";
     boolean[] resultatsQuestions;
 
     @Override
@@ -39,12 +43,25 @@ public class SerieDechetActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie_dechet);
 
-        //Obtention de la liste de dechets
-        this.datasource = new DechetDAO(this);
-        this.datasource.open();
-        //On recupère une liste de 3 dechets
-        this.serieDechet = new ArrayList<>(this.datasource.getListDechets(5));
-        this.datasource.close();
+        if(savedInstanceState == null){
+            //Obtention de la liste de dechets
+            this.datasource = new DechetDAO(this);
+            this.datasource.open();
+            //On recupère une liste de 3 dechets
+            this.serieDechet = new ArrayList<>(this.datasource.getListDechets(5));
+            this.datasource.close();
+
+            //Initialisation du déroulement de la serie
+            this.nbQuestions = this.serieDechet.size();
+            this.questionCourante = 0;
+            this.resultatsQuestions = new boolean[this.serieDechet.size()];
+        }else{
+            this.nbQuestions = savedInstanceState.getInt(this.NBQUESTIONLIB);
+            this.questionCourante = savedInstanceState.getInt(this.QUESTIONCOURANTELIB);
+            this.serieDechet = savedInstanceState.getParcelableArrayList(this.SERIEDECHETSLIB);
+            this.resultatsQuestions = savedInstanceState.getBooleanArray(this.RESULTATQUESTIONSLIB);
+        }
+
 
         //Récupération des éléments de la vue
         this.poubelleJaune = (ImageButton) findViewById(R.id.poubelleJauneButton);
@@ -59,17 +76,14 @@ public class SerieDechetActivity extends AbstractActivity {
         this.poubelleMenager.setOnClickListener(poubelleMenagerListener);
 
         //On récupère l'ID de l'image depuis sont nom
-        int resID = this.getResources().getIdentifier(this.serieDechet.get(0).getNomImage(),"drawable",getPackageName());
+        int resID = this.getResources().getIdentifier(this.serieDechet.get(this.questionCourante).getNomImage(),"drawable",getPackageName());
         this.dechet.setImageResource(resID);
 
         //On set les nom Français et anglais.
-        this.nomFrancaisDechet.setText(this.serieDechet.get(0).getNomFr());
-        this.nomAnglaisDechet.setText(this.serieDechet.get(0).getNomEn());
+        this.nomFrancaisDechet.setText(this.serieDechet.get(this.questionCourante).getNomFr());
+        this.nomAnglaisDechet.setText(this.serieDechet.get(this.questionCourante).getNomEn());
 
-        //Initialisation du déroulement de la serie
-        this.nbQuestions = this.serieDechet.size();
-        this.questionCourante = 0;
-        this.resultatsQuestions = new boolean[this.serieDechet.size()];
+
 
     }
 
@@ -131,5 +145,15 @@ public class SerieDechetActivity extends AbstractActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         finish();
     }
+
+    protected void onSaveInstanceState(Bundle outState){
+        outState.putInt(this.NBQUESTIONLIB,this.nbQuestions);
+        outState.putInt(this.QUESTIONCOURANTELIB,this.questionCourante);
+        outState.putParcelableArrayList(this.SERIEDECHETSLIB,this.serieDechet);
+        outState.putBooleanArray(this.RESULTATQUESTIONSLIB,this.resultatsQuestions);
+
+        super.onSaveInstanceState(outState);
+    }
+
 
 }
