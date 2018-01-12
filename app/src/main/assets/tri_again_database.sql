@@ -17,3 +17,11 @@ INSERT INTO dechets VALUES(13,"Pochette Cadeau","gift bag","recyclable_pochettec
 INSERT INTO dechets VALUES(14,"Ketchup","Ketchup","recyclable_ketchup","recyclable");
 INSERT INTO dechets VALUES(15,"Briquette de Jus d'orange","briquette of orange juice","recyclable_briquettejusorange","recyclable");
 INSERT INTO dechets VALUES(16,"Tube de dentifrice","tube of toothpaste","menager_dentifrice","menager");
+INSERT INTO dechets VALUES(17,"Assiette cassée","Brocken plate","menager_assiettecassee","menager");
+INSERT INTO dechets VALUES(18,"Gobelet plastique","plastic cup","menager_gobeletplastique","menager");
+INSERT INTO dechets VALUES(19,"boite à chaussure","shoebox","recyclable_boitechaussure","recyclable");
+INSERT INTO dechets VALUES(20,"brick de lait","milk brig","recyclable_bricklait","recyclable");
+INSERT INTO dechets VALUES(21,"Emballage de Lessive vide","Empty laundry package","recyclable_lessive","recyclable");
+INSERT INTO dechets VALUES(22,"Pot de Crème Fraiche","jar of fresh cream","menager_cremefraiche","menager");
+INSERT INTO dechets VALUES(23,"Restes de Repas","leftovers","menager_restederepas","menager");
+INSERT INTO dechets VALUES(24,"Pub","advert","recyclable_pub","recyclable");

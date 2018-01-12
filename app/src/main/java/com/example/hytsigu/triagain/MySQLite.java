@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 public class MySQLite extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tri_again.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 12;
     private static MySQLite sInstance;
     private Context context;
 
