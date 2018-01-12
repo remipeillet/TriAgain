@@ -18,7 +18,8 @@
         <activity android:name=".SerieDechetActivity" />
         <activity
             android:name=".ResultatActivity"
-            android:label="@string/title_activity_resultat"></activity>
+            android:label="@string/title_activity_resultat" />
+        <activity android:name=".ChoixActivity"></activity>
     </application>
 
 </manifest>
